@@ -18,8 +18,8 @@ describe Funicular do
       double(:client, download_report: [])
     end
 
-    let :api do
-      double(:api, push: [])
+    let :store do
+      double(:store, push: [])
     end
 
     let :converter do
@@ -42,7 +42,7 @@ describe Funicular do
     end
 
     subject :funicular do
-      described_class.new(client, api, converter)
+      described_class.new(client, store, converter)
     end
 
     before do
@@ -51,7 +51,7 @@ describe Funicular do
 
     it 'downloads and parses report, then pushes series to store' do
       funicular.run(date)
-      expect(api).to have_received(:push).with(expected_series)
+      expect(store).to have_received(:push).with(expected_series)
     end
 
     context 'when impressions is nil' do
@@ -63,7 +63,7 @@ describe Funicular do
 
       it 'sets impressions to nil' do
         funicular.run(date)
-        expect(api).to have_received(:push).with(include(hash_including(impressions: nil)))
+        expect(store).to have_received(:push).with(include(hash_including(impressions: nil)))
       end
     end
 
@@ -76,7 +76,7 @@ describe Funicular do
 
       it 'sets revenue to nil' do
         funicular.run(date)
-        expect(api).to have_received(:push).with(include(hash_including(revenue: nil)))
+        expect(store).to have_received(:push).with(include(hash_including(revenue: nil)))
       end
     end
 
@@ -93,7 +93,7 @@ describe Funicular do
 
       it 'converts revenue' do
         funicular.run(date)
-        expect(api).to have_received(:push).with(include(hash_including(revenue: 321)))
+        expect(store).to have_received(:push).with(include(hash_including(revenue: 321)))
       end
     end
   end
