@@ -91,7 +91,7 @@ describe Funicular do
         allow(converter).to receive(:convert).with(456.789, from: 'USD', to: 'EUR').and_return(321)
       end
 
-      it 'converts revenue' do
+      it 'converts revenue to EUR' do
         funicular.run(date)
         expect(store).to have_received(:push).with(include(hash_including(revenue: 321)))
       end
