@@ -8,6 +8,9 @@ it as a time series to the store.
 There are also a few failing tests. The task is to make them green,
 one at a time, starting from the top.
 
+We want to see an easy to read solution, with adequate performance and good
+software-engineering practices.
+
 ## Installation
 
 Clone this repository locally:
@@ -54,4 +57,5 @@ you want.
 $ make package
 ```
 
-Send the file to the contact person at Burt.
+Send the file to the contact person at Burt before the deadline, as specified in
+the email.
